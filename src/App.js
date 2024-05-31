@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [poem, setPoem] = useState('');
@@ -29,32 +30,40 @@ function App() {
     }
   };
 
+  const generatePromptPoem = async (poem)=>{
+    try {
+
+      
+    } catch (error) {
+      
+    }
+  }
+
   useEffect(() => {
     fetchPoems();
   }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button onClick={generateAndSavePoem}>Generate & Save Poem</button>
-        {allPoems.map((poemObject, index) => (
-          <div key={poemObject.id || index} className={`poem-block poem-${index}`}>
-            <div className="poem-info">
-              <span>Poem {poemObject.id || (index + 1)}</span><br />
-              <span>Date: {new Date(poemObject.date).toLocaleDateString()}</span><br />
-              <span>Time: {new Date(poemObject.date).toLocaleTimeString()}</span>
-            </div>
-            <br />
-            <div className="poem-text">
+      <header className="App-header" style={{ backgroundColor: 'var(--primary-color)', color: 'red' }}>
+        <h1>I WANT TO BE NADI NICOCO</h1>
+        <button className="btn btn-primary" onClick={generateAndSavePoem}>Generate & Save Poem</button>
+      </header>
+      <main className="App-main">
+      {allPoems.map((poemObject, index) => (
+        <section key={poemObject.id || index} className={`poem-block poem-${index}`} style={{ backgroundColor: 'var(--secondary-color)' }}>
+          <h2>Poem {poemObject.id || (index + 1)}</h2>
+          <div className="poem-text">
+            <p>Date: {new Date(poemObject.date).toLocaleDateString()}</p>
+            <p>Time: {new Date(poemObject.date).toLocaleTimeString()}</p>
             {poemObject.poem.split("\n").map((line, index) => (
-              <p key={index}>{line}</p>
+              <p key={index}>{line}<br /></p>
             ))}
           </div>
-          </div>
-        ))}
-      </header>
+        </section>
+      ))}
+      </main>
     </div>
   );
 }
-
 export default App;
