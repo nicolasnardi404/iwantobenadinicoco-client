@@ -30,15 +30,6 @@ function App() {
     }
   };
 
-  const generatePromptPoem = async (poem)=>{
-    try {
-
-      
-    } catch (error) {
-      
-    }
-  }
-
   useEffect(() => {
     fetchPoems();
   }, []);
