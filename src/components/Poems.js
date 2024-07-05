@@ -6,10 +6,10 @@ export default function Poems() {
 
   const fetchPoems = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/");
+      const response = await axios.get("https://api.iwannabenadinicoco.com/");
       const poemsArray = Array.isArray(response.data) ? response.data : [];
       const sortedPoems = poemsArray.sort(
-        (a, b) => new Date(b.date) - new Date(a.date),
+        (a, b) => new Date(b.date) - new Date(a.date)
       );
       setAllPoems(sortedPoems);
     } catch (error) {
