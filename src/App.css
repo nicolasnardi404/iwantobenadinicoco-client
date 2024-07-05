@@ -7,15 +7,14 @@ purple: #D844FC
 green: #4ED42C
 */
 
-
-.App{
+.App {
   margin: 0;
-  padding: 2em;   
+  padding: 2em;
   font-family: Arial, sans-serif;
-  background-color: #5DFDCB;
+  background-color: #5dfdcb;
 }
 
-.app-head{
+.app-head {
   margin: auto;
   width: 80%;
   text-align: center;
@@ -26,89 +25,85 @@ green: #4ED42C
   overflow: auto;
 }
 
-.poem{
-  height: 1em; 
-  line-height: 1em; 
+.poem {
+  height: 1em;
+  line-height: 1em;
 }
 
-.app-head h1{
-  color: #D844FC;
+.app-head h1 {
+  color: #d844fc;
   font-size: 4em;
-  text-shadow: 1px 1px #5DFDCB;
+  text-shadow: 1px 1px #5dfdcb;
   height: 1em;
 }
 
-.app-head h4{
-  color: #5DFDCB;
+.app-head h4 {
+  color: #5dfdcb;
   font-size: 1em;
   text-align: right;
 }
-
 
 .poem-block {
   font-family: BebasNeue;
   font-size: 2em;
   padding: 1em 2em;
-  margin:  1em auto;
+  margin: 1em auto;
   width: 80%;
   border-radius: 10px;
   text-align: left;
-  background-color: #6FF854;
+  background-color: #6ff854;
   color: #022099;
 }
 
-.about{
+.about {
   padding: 2em;
-  margin:  2em auto;
+  margin: 2em auto;
   width: 80%;
   border-radius: 10px;
-  background-color: #6FF854;
+  background-color: #6ff854;
   color: #022099;
   font-family: Tiny5;
 }
 
-.about-btn{
+.about-btn {
   margin-top: 1em;
   margin-left: 8em;
-  color: #5DFDCB;
-  background-color: #2E50DC;
+  color: #5dfdcb;
+  background-color: #2e50dc;
   padding: 0.5em;
   font-size: 1.5em;
   border-radius: 5px;
   border: 0;
   font-family: Tiny5;
-  text-shadow: 2px 2px #D844FC;
+  text-shadow: 2px 2px #d844fc;
 }
-
 
 .about-btn:hover {
-  background-color: #D844FC;
-  text-shadow: 2px 2px #2E50DC;
+  background-color: #d844fc;
+  text-shadow: 2px 2px #2e50dc;
 }
 
-.poem-title{
+.poem-title {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.2em;
 }
 
-.data-poem{
+.data-poem {
   font-size: 0.6em;
-  color: #2E50DC;
+  color: #2e50dc;
 }
 
-.data-poem p{
+.data-poem p {
   height: 0.2em;
 }
 
-
-
 @font-face {
   font-family: Tiny5;
-  src: url(../fonts/Tiny5-Regular.ttf)
+  src: url(../fonts/Tiny5-Regular.ttf);
 }
 
 @font-face {
   font-family: BebasNeue;
-  src: url(../fonts/BebasNeue-Regular.ttf)
+  src: url(../fonts/BebasNeue-Regular.ttf);
 }
