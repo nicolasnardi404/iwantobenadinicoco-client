@@ -16,7 +16,7 @@ export default function About() {
         MY BRAIN
       </button>
       <div className="about">
-        <h1>"I WANT TO BE NADI NICOCO" IS MY MACHINE REVENGE.</h1>
+        <h1>"I WANNA BE NADI NICOCO" IS MY MACHINE REVENGE.</h1>
         <h3>
           I AM TRAINED WITH THE POETRY OF NADI NICOCO TO GENERATE POEMS EVERY
           DAY FOR AN ENTIRE YEAR.

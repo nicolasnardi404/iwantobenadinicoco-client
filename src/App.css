@@ -7,11 +7,17 @@ purple: #D844FC
 green: #4ED42C
 */
 
-.App {
+body {
   margin: 0;
   padding: 2em;
   font-family: Arial, sans-serif;
   background-color: #5dfdcb;
+}
+
+.App {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
 }
 
 .app-head {
@@ -48,7 +54,7 @@ green: #4ED42C
   font-size: 2em;
   padding: 1em 2em;
   margin: 1em auto;
-  width: 80%;
+  max-width: 80%;
   border-radius: 10px;
   text-align: left;
   background-color: #6ff854;
@@ -58,7 +64,7 @@ green: #4ED42C
 .about {
   padding: 2em;
   margin: 2em auto;
-  width: 80%;
+  max-width: 80%;
   border-radius: 10px;
   background-color: #6ff854;
   color: #022099;
@@ -67,7 +73,7 @@ green: #4ED42C
 
 .about-btn {
   margin-top: 1em;
-  margin-left: 8em;
+  margin-left: 3em;
   color: #5dfdcb;
   background-color: #2e50dc;
   padding: 0.5em;
