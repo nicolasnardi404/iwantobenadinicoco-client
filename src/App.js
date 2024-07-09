@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Pages from "./pages/Pages";
 import "./App.css";
 import {
   Redirect,
@@ -14,10 +15,13 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact>
-          <Redirect to="/home"></Redirect>
+          <Redirect to="/pages"></Redirect>
         </Route>
-        <Route path="/home" component={Home} />
+        <Route path="/homw" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/pages/:pageNumber">
+          <Pages />
+        </Route>
       </Switch>
     </Router>
   );

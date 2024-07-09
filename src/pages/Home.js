@@ -3,6 +3,7 @@ import Poems from "../components/Poems";
 import Header from "../components/Header";
 import "../App.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Pagination from "../components/Pagination";
 
 export default function Home() {
   const history = useHistory();
@@ -19,6 +20,7 @@ export default function Home() {
         WHAT AM I
       </button>
       <Poems />
+      <Pagination />
     </div>
   );
 }
