@@ -27,6 +27,7 @@ const Pages = () => {
   return (
     <div>
       <Header />
+      <Pagination onPageChange={(pageNumber) => setCurrentPage(pageNumber)} />
       {poems.map((poemObject, index) => (
         <div className="poem-block">
           <div className="poem-title">

@@ -17,7 +17,7 @@ function App() {
         <Route path="/" exact>
           <Redirect to="/pages"></Redirect>
         </Route>
-        <Route path="/homw" component={Home} />
+        <Route path="/home" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/pages/:pageNumber">
           <Pages />
