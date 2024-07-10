@@ -30,23 +30,21 @@ const Pagination = ({ onPageChange }) => {
     onPageChange(pageNumber); // Call the passed callback function
   };
 
+  const pageNumbers = [...Array(totalPages).keys()].reverse().map((i) => i + 1);
+
   return (
     <nav>
-      <ul className="pagination">
-        {[...Array(totalPages)].map((_, pageNumber) => (
-          <li
-            key={pageNumber + 1}
-            className={`page-item ${currentPage === pageNumber + 1 ? "active" : ""}`}
+      <div className="pagination">
+        <p>PAGES:</p>
+        {pageNumbers.map((pageNumber) => (
+          <button
+            onClick={() => handleChangePage(pageNumber)}
+            className="page-link"
           >
-            <button
-              onClick={() => handleChangePage(pageNumber + 1)}
-              className="page-link"
-            >
-              {pageNumber + 1}
-            </button>
-          </li>
+            {pageNumber}
+          </button>
         ))}
-      </ul>
+      </div>
     </nav>
   );
 };

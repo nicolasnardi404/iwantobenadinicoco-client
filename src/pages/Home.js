@@ -4,9 +4,11 @@ import Header from "../components/Header";
 import "../App.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Pagination from "../components/Pagination";
+import { useState } from "react";
 
 export default function Home() {
   const history = useHistory();
+  const [currentPage, setCurrentPage] = useState(1);
 
   function handleClick(e) {
     e.preventDefault();
@@ -16,11 +18,13 @@ export default function Home() {
   return (
     <div className="App">
       <Header />
-      <button className="about-btn" onClick={handleClick}>
-        WHAT AM I
-      </button>
+      <div className="btn-container">
+        <button className="about-btn" onClick={handleClick}>
+          WHAT AM I
+        </button>
+      </div>
+      <Pagination onPageChange={(pageNumber) => setCurrentPage(pageNumber)} />
       <Poems />
-      <Pagination />
     </div>
   );
 }
