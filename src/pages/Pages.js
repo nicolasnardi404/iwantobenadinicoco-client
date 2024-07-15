@@ -23,6 +23,7 @@ const Pages = () => {
           `https://api.iwannabenadinicoco.com/poems?page=${currentPage}`
         );
         setPoems(response.data.reverse());
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching poems:", error);
       }
@@ -30,6 +31,18 @@ const Pages = () => {
 
     fetchPoems();
   }, [currentPage]);
+
+  const formatDate = (dateString, timeZone = "UTC") => {
+    const date = new Date(dateString);
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      timeZone: timeZone,
+      timeZoneName: "short", // Includes timezone abbreviation
+    };
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  };
 
   return (
     <div className="App">
@@ -46,7 +59,7 @@ const Pages = () => {
             <div className="poem-title">
               <h2>Poem {poemObject.id || index + 1}</h2>
               <div className="data-poem">
-                <p>Date: {new Date(poemObject.date).toLocaleDateString()}</p>
+                <p>Date: {formatDate(poemObject.date)}</p>
                 <p>Time: {new Date(poemObject.date).toLocaleTimeString()}</p>
               </div>
             </div>

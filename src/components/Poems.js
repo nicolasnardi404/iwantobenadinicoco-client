@@ -9,6 +9,8 @@ export default function Poems() {
       const response = await axios.get("https://api.iwannabenadinicoco.com/");
       const poemsArray = Array.isArray(response.data) ? response.data : [];
       setAllPoems(poemsArray);
+      console.log(response.data);
+      console.log(poemsArray);
     } catch (error) {
       console.error("Failed to fetch poems:", error);
     }
@@ -17,6 +19,14 @@ export default function Poems() {
   useEffect(() => {
     fetchPoems();
   }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero indexed
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <div>
@@ -27,7 +37,7 @@ export default function Poems() {
               <h2>Poem {poemObject.id || index + 1}</h2>
             </div>
             <div className="data-poem">
-              <p>Date: {new Date(poemObject.date).toLocaleDateString()}</p>
+              <p>Date: {formatDate(poemObject.date)}</p>
               <p>Time: {new Date(poemObject.date).toLocaleTimeString()}</p>
             </div>
           </div>
