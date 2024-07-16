@@ -41,12 +41,11 @@ export default function Poems() {
               <p>Time: {new Date(poemObject.date).toLocaleTimeString()}</p>
             </div>
           </div>
-          {poemObject.poem.split("\n").map((line, index) => (
-            <p className="poem" key={index}>
-              {line}
-              <br />
-            </p>
-          ))}
+          <div className="poem">
+            {poemObject.poem.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
         </div>
       ))}
     </div>

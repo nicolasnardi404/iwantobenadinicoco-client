@@ -20,7 +20,7 @@ export default function Home() {
       <Header />
       <div className="btn-container">
         <button className="about-btn" onClick={handleClick}>
-          WHAT AM I
+          WHAT AM I AI
         </button>
       </div>
       <Pagination onPageChange={(pageNumber) => setCurrentPage(pageNumber)} />
