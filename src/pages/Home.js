@@ -5,10 +5,12 @@ import "../App.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Pagination from "../components/Pagination";
 import { useState } from "react";
+import { inject } from "@vercel/analytics";
 
 export default function Home() {
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
+  inject();
 
   function handleClick(e) {
     e.preventDefault();
