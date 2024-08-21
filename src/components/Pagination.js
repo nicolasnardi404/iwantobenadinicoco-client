@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom"; // Import useHistory
 
-const Pagination = ({ onPageChange }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({ currentPage, onPageChange }) => {
   const [totalPages, setTotalPages] = useState(0);
-  const history = useHistory(); // Use the useHistory hook
 
   useEffect(() => {
     const fetchPoemsAndSetPages = async () => {
@@ -24,12 +21,6 @@ const Pagination = ({ onPageChange }) => {
     fetchPoemsAndSetPages();
   }, []);
 
-  const handleChangePage = (pageNumber) => {
-    const url = `/pages/${pageNumber}`;
-    history.push(url); // This line may be removed if onPageChange is sufficient
-    onPageChange(pageNumber); // Call the passed callback function
-  };
-
   const pageNumbers = [...Array(totalPages).keys()].reverse().map((i) => i + 1);
 
   return (
@@ -38,9 +29,12 @@ const Pagination = ({ onPageChange }) => {
         <p>PAGES:</p>
         {pageNumbers.map((pageNumber) => (
           <button
-            onClick={() => handleChangePage(pageNumber)}
-            className="page-link"
+            key={pageNumber}
+            onClick={() => onPageChange(pageNumber)}
+            className={`page-link ${pageNumber === currentPage ? "currentPage" : ""}`}
           >
+            {console.log("page" + pageNumber)}
+            {console.log("current" + currentPage)}
             {pageNumber}
           </button>
         ))}

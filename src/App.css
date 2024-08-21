@@ -139,6 +139,12 @@ body {
   text-align: center;
 }
 
+.page-link.currentPage {
+  background-color: #d844fc;
+  color: #5dfdcb;
+  border: 4px solid #022099;
+}
+
 .page-link:hover {
   background-color: #d844fc;
   color: #2e50dc;
