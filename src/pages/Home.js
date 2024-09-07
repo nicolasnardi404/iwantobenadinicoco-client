@@ -12,17 +12,20 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   inject();
 
-  function handleClick(e) {
+  function handleClick(e, url) {
     e.preventDefault();
-    history.push("/about");
+    history.push(`/${url}`);
   }
 
   return (
     <div className="App">
       <Header />
       <div className="btn-container">
-        <button className="about-btn" onClick={handleClick}>
+        <button className="about-btn" onClick={(e) => handleClick(e, "about")}>
           WHAT AM I AI
+        </button>
+        <button className="about-btn" onClick={(e) => handleClick(e, "donate")}>
+          SUPPORT THIS PROJECT
         </button>
       </div>
       <Pagination onPageChange={(pageNumber) => setCurrentPage(pageNumber)} />

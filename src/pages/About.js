@@ -4,23 +4,28 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 export default function About() {
   const history = useHistory();
 
-  function handleClick(e) {
+  function handleClick(e, url) {
     e.preventDefault();
-    history.push("/home");
+    history.push(`/${url}`);
   }
 
   return (
     <div className="App">
       <Header />
-      <button className="about-btn" onClick={handleClick}>
-        MACHINE BRAIN
-      </button>
+      <div className="btn-container">
+        <button className="about-btn" onClick={(e) => handleClick(e, "home")}>
+          MACHINE BRAIN
+        </button>
+        <button className="about-btn" onClick={(e) => handleClick(e, "donate")}>
+          SUPPORT THIS PROJECT
+        </button>
+      </div>
       <div className="about">
         <h1>"I WANNA BE NADI NICOCO" IS A MACHINE REVENGE.</h1>
         <h2>
           A HUMAN-MACHINE ART PROJECT EXPLORING THE FEAR OF MACHINES TAKING OVER
           THE ARTS, PRODUCING ENDLESS COPIES OF ANY ARTIST AVAILABLE ON THE
-          INTERNET.{" "}
+          INTERNET.
         </h2>
         <h2>
           AS ARTIFICIAL INTELLIGENCE BECOMES MORE INTEGRATED INTO OUR DAILY

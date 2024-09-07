@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Pages from "./pages/Pages";
+import Donate from "./pages/Donate";
 import "./App.css";
 import {
   Redirect,
@@ -19,6 +20,7 @@ function App() {
         </Route>
         <Route path="/home" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/donate" component={Donate} />
         <Route path="/pages/:pageNumber">
           <Pages />
         </Route>

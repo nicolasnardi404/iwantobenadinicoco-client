@@ -95,9 +95,35 @@ body {
   font-family: Tiny5;
 }
 
-.about-btn {
+.about a{
+  text-decoration: none;
+  color: #2e50dc;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1.5em;
+}
+
+.about a:hover{
+  color:  #D844FC;
+}
+
+.donate{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+.btn-container{
   margin: auto;
-  margin-top: 2em;
+  display: block;  
+  text-align: center;
+}
+
+
+.about-btn { 
+  display: inline-block;
+  margin-top: 30px;
   color: #5dfdcb;
   background-color: #2e50dc;
   padding: 0.5em;
@@ -151,6 +177,8 @@ body {
   border: 4px solid #022099;
 }
 
+
+
 @font-face {
   font-family: Tiny5;
   src: url(../fonts/Tiny5-Regular.ttf);
@@ -168,6 +196,12 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
+  .btn-container{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    gap:20px
+  }
   .app-head h1 {
     font-size: 6em;
     margin-bottom: 0.5em;
