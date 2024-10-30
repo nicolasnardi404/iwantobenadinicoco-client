@@ -46,7 +46,7 @@
       <td align="center">⚛️</td>
       <td><strong>Frontend</strong><br/>React 18.3 with React Router</td>
       <td align="center">🎨</td>
-      <td><strong>Styling</strong><br/>Custom CSS with Bootstrap</td>
+      <td><strong>Styling</strong><br/>Custom CSS</td>
     </tr>
     <tr>
       <td align="center">🔄</td>
