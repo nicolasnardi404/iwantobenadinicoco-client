@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function Poems() {
   const [allPoems, setAllPoems] = useState([]);
+  const history = useHistory();
 
   const fetchPoems = async () => {
     try {
-      const response = await axios.get("https://api.iwannabenadinicoco.com/");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}`);
       const poemsArray = Array.isArray(response.data) ? response.data : [];
       setAllPoems(poemsArray);
       console.log(response.data);
@@ -31,7 +33,11 @@ export default function Poems() {
   return (
     <div>
       {allPoems.map((poemObject, index) => (
-        <div className="poem-block">
+        <div
+          className="poem-block"
+          onClick={() => history.push(`/poem/${poemObject.token}`)}
+          style={{ cursor: "pointer" }}
+        >
           <div className="poem-title">
             <div>
               <h2>Poem {poemObject.id || index + 1}</h2>

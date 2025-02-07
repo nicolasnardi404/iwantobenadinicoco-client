@@ -13,7 +13,7 @@ const Pages = () => {
     const fetchPoems = async () => {
       try {
         const response = await axios.get(
-          `https://api.iwannabenadinicoco.com/poems?page=${pageNumber}`
+          `${process.env.REACT_APP_API_URL}/poems?page=${pageNumber}`
         );
         setPoems(response.data.reverse());
       } catch (error) {

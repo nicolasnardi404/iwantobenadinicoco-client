@@ -8,7 +8,7 @@ const Pagination = ({ currentPage, onPageChange }) => {
     const fetchPoemsAndSetPages = async () => {
       try {
         const response = await axios.get(
-          "https://api.iwannabenadinicoco.com/count"
+          `${process.env.REACT_APP_API_URL}/count`
         );
         const totalCount = response.data;
         const totalPages = Math.ceil(totalCount / 10);

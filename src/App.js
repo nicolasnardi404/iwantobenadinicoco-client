@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Pages from "./pages/Pages";
 import Donate from "./pages/Donate";
+import PoemPage from "./pages/PoemPage";
 import "./App.css";
 import {
   Redirect,
@@ -24,6 +25,7 @@ function App() {
         <Route path="/pages/:pageNumber">
           <Pages />
         </Route>
+        <Route path="/poem/:token" component={PoemPage} />
       </Switch>
     </Router>
   );
