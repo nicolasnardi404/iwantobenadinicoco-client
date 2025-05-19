@@ -2,25 +2,27 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-export default function Poems() {
+export default function Poems({ page = 1 }) {
   const [allPoems, setAllPoems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  const fetchPoems = async () => {
+  const fetchPoems = async (pageNum) => {
+    setLoading(true);
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}`);
       const poemsArray = Array.isArray(response.data) ? response.data : [];
       setAllPoems(poemsArray);
-      console.log(response.data);
-      console.log(poemsArray);
     } catch (error) {
       console.error("Failed to fetch poems:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchPoems();
-  }, []);
+    fetchPoems(page);
+  }, [page]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -30,30 +32,39 @@ export default function Poems() {
     return `${day}/${month}/${year}`;
   };
 
+  if (loading) {
+    return <div className="loading">Loading poems...</div>;
+  }
+
   return (
     <div>
-      {allPoems.map((poemObject, index) => (
-        <div
-          className="poem-block"
-          onClick={() => history.push(`/poem/${poemObject.token}`)}
-          style={{ cursor: "pointer" }}
-        >
-          <div className="poem-title">
-            <div>
-              <h2>Poem {poemObject.id || index + 1}</h2>
+      {allPoems.length === 0 ? (
+        <div className="no-poems">No poems found.</div>
+      ) : (
+        allPoems.map((poemObject, index) => (
+          <div
+            key={poemObject.id || index}
+            className="poem-block"
+            onClick={() => history.push(`/poem/${poemObject.token}`)}
+            style={{ cursor: "pointer" }}
+          >
+            <div className="poem-title">
+              <div>
+                <h2>Poem {poemObject.id || index + 1}</h2>
+              </div>
+              <div className="data-poem">
+                <p>Date: {formatDate(poemObject.date)}</p>
+                <p>Time: {new Date(poemObject.date).toLocaleTimeString()}</p>
+              </div>
             </div>
-            <div className="data-poem">
-              <p>Date: {formatDate(poemObject.date)}</p>
-              <p>Time: {new Date(poemObject.date).toLocaleTimeString()}</p>
+            <div className="poem">
+              {poemObject.poem.split("\n").map((line, lineIndex) => (
+                <p key={lineIndex}>{line}</p>
+              ))}
             </div>
           </div>
-          <div className="poem">
-            {poemObject.poem.split("\n").map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 }
