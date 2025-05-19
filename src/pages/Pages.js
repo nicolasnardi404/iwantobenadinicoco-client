@@ -7,7 +7,9 @@ import Pagination from "../components/Pagination";
 const Pages = () => {
   const { pageNumber } = useParams(); // Current page number from URL
   const [poems, setPoems] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
   const history = useHistory();
+  const currentPageNumber = parseInt(pageNumber);
 
   useEffect(() => {
     const fetchPoems = async () => {
@@ -16,6 +18,13 @@ const Pages = () => {
           `${process.env.REACT_APP_API_URL}/poems?page=${pageNumber}`
         );
         setPoems(response.data.reverse());
+
+        // Get total poems count to calculate total pages
+        const countResponse = await axios.get(
+          `${process.env.REACT_APP_API_URL}/count`
+        );
+        const totalCount = countResponse.data;
+        setTotalPages(Math.ceil(totalCount / 10));
       } catch (error) {
         console.error("Error fetching poems:", error);
       }
@@ -36,6 +45,89 @@ const Pages = () => {
     history.push(`/pages/${pageNumber}`);
   };
 
+  // Custom pagination UI for Pages.js
+  const renderCustomPagination = () => {
+    if (totalPages <= 1) return null;
+
+    const maxVisiblePages = 5;
+    const halfVisible = Math.floor(maxVisiblePages / 2);
+
+    let startPage = Math.max(1, currentPageNumber - halfVisible);
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    // Adjust if we're near the end
+    if (endPage - startPage < maxVisiblePages - 1) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    const pageNumbers = [];
+
+    // Add last page with ellipsis if needed (in descending order: higher on left)
+    if (endPage < totalPages) {
+      pageNumbers.push(totalPages);
+      if (endPage < totalPages - 1) {
+        pageNumbers.push("...");
+      }
+    }
+
+    // Add page numbers around current page in descending order
+    for (let i = endPage; i >= startPage; i--) {
+      pageNumbers.push(i);
+    }
+
+    // Add first page with ellipsis if needed
+    if (startPage > 1) {
+      if (startPage > 2) {
+        pageNumbers.push("...");
+      }
+      pageNumbers.push(1);
+    }
+
+    return (
+      <nav>
+        <div className="pagination">
+          <p>PAGES:</p>
+
+          {/* Next page button (on left for higher pages) */}
+          <button
+            className="nav-button"
+            onClick={() => handlePageChange(currentPageNumber + 1)}
+            disabled={currentPageNumber === totalPages}
+          >
+            &lt;
+          </button>
+
+          {/* Page numbers */}
+          {pageNumbers.map((page, index) =>
+            page === "..." ? (
+              <span key={`ellipsis-${index}`} className="ellipsis">
+                ...
+              </span>
+            ) : (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`page-link ${page === currentPageNumber ? "currentPage" : ""}`}
+              >
+                {page}
+              </button>
+            )
+          )}
+
+          {/* Previous page button (on right for lower pages) */}
+          <button
+            className="nav-button"
+            onClick={() => handlePageChange(currentPageNumber - 1)}
+            disabled={currentPageNumber === 1}
+          >
+            {" "}
+            &gt;
+          </button>
+        </div>
+      </nav>
+    );
+  };
+
   return (
     <div className="App">
       <Header />
@@ -44,10 +136,7 @@ const Pages = () => {
           WHAT AM I
         </button>
       </div>
-      <Pagination
-        currentPage={parseInt(pageNumber)}
-        onPageChange={handlePageChange}
-      />
+      {renderCustomPagination()}
       <div>
         {poems.map((poemObject, index) => (
           <div className="poem-block" key={index}>
